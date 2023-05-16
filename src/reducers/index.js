@@ -1,10 +1,13 @@
 import { combineReducers } from "redux";
 
 import {
-  ADD_TO_FAVOURITES,
   ADD_MOVIES,
+  ADD_TO_FAVOURITES,
   REMOVE_FROM_FAVOURITES,
   SET_SHOW_FAVOURITES,
+  ADD_MOVIE_TO_LIST,
+  ADD_SEARCH_RESULT,
+  CLICK_OUTSIDE,
 } from "../actions";
 
 const initialMoviesState = {
@@ -40,18 +43,42 @@ export function movies(state = initialMoviesState, action) {
         ...state,
         showFavourites: action.val,
       };
-
+    case ADD_MOVIE_TO_LIST:
+      return {
+        ...state,
+        list: [action.movie, ...state.list],
+      };
     default:
       return state;
   }
 }
 
 const initalSearchState = {
-  result: {},
+  result: [],
+  showSearchResults: false,
 };
 /* SEARCH REDUCER */
 export function search(state = initalSearchState, action) {
-  return state;
+  switch (action.type) {
+    case ADD_SEARCH_RESULT:
+      return {
+        ...state,
+        result: action.movies,
+        showSearchResults: true,
+      };
+    case ADD_MOVIE_TO_LIST:
+      return {
+        ...state,
+        showSearchResults: false,
+      };
+    case CLICK_OUTSIDE:
+      return {
+        ...state,
+        showSearchResults: false,
+      };
+    default:
+      return state;
+  }
 }
 
 // const initalRootState = {
