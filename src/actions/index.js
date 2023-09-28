@@ -21,55 +21,55 @@ export const CLICK_OUTSIDE = "CLICK_OUTSIDE";
 
 // action creaters
 export function addMovies(movies) {
-  return {
-    type: ADD_MOVIES,
-    movies,
-  };
+    return {
+        type: ADD_MOVIES,
+        movies,
+    };
 }
 export function addToFavourites(movie) {
-  return {
-    type: ADD_TO_FAVOURITES,
-    movie,
-  };
+    return {
+        type: ADD_TO_FAVOURITES,
+        movie,
+    };
 }
 export function removeFromFavourites(movie) {
-  return {
-    type: REMOVE_FROM_FAVOURITES,
-    movie,
-  };
+    return {
+        type: REMOVE_FROM_FAVOURITES,
+        movie,
+    };
 }
 export function setShowFavourites(val) {
-  return {
-    type: SET_SHOW_FAVOURITES,
-    val,
-  };
+    return {
+        type: SET_SHOW_FAVOURITES,
+        val,
+    };
 }
 export function addMovieToList(movie) {
-  return {
-    type: ADD_MOVIE_TO_LIST,
-    movie,
-  };
+    return {
+        type: ADD_MOVIE_TO_LIST,
+        movie,
+    };
 }
 export function handleMovieSearch(searchText) {
-  return async function (dispatch) {
-    const url = `http://www.omdbapi.com/?apikey=3ca5df7&s=${searchText}`;
+    return async function (dispatch) {
+        const url = `https://www.omdbapi.com/?apikey=3ca5df7&s=${searchText}`;
 
-    const res = await fetch(url);
-    const movies = await res.json();
+        const res = await fetch(url);
+        const movies = await res.json();
 
-    if (movies.Response) {
-      dispatch(addMoviesSearchResult(movies.Search));
-    }
-  };
+        if (movies.Response) {
+            dispatch(addMoviesSearchResult(movies.Search));
+        }
+    };
 }
 export function addMoviesSearchResult(movies) {
-  return {
-    type: ADD_SEARCH_RESULT,
-    movies,
-  };
+    return {
+        type: ADD_SEARCH_RESULT,
+        movies,
+    };
 }
 export function clickOutside() {
-  return {
-    type: CLICK_OUTSIDE,
-  };
+    return {
+        type: CLICK_OUTSIDE,
+    };
 }
